@@ -14,6 +14,34 @@
     <script>
       // You can also require other files to run in this process
       require('./renderer.js')
+      const path = require('path');
+      const fs = require("fs");
+
+
+      const mtp = require('node-mtp');
+
+      mtp.attach();
+
+      const list = mtp.getFileListing();
+      console.log('Files:', list);
+
+      mtp.getFile(8, 'test.jpg'); // <file id>, <destination>
+
+      mtp.release();
+
+
+      const newFile_path = path.join(__dirname, 'package.json').replace(/\\/g, "\/");
+     fs.exists(newFile_path, function (exists) {
+            //读取本地的json文件
+            let result = JSON.parse(fs.readFileSync(newFile_path));
+            
+            //遍历读取到的用户对象，进行登录验证   
+            
+    });
+
+
+
+
     </script>
   </body>
 </html>
